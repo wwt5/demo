@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://wwtttt.github.io</id>
+    <title>Wade</title>
+    <updated>2020-04-26T09:26:23.073Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://wwtttt.github.io"/>
+    <link rel="self" href="https://wwtttt.github.io/atom.xml"/>
+    <subtitle>如果我有一朵花，我想我会送给你</subtitle>
+    <logo>https://wwtttt.github.io/images/avatar.png</logo>
+    <icon>https://wwtttt.github.io/favicon.ico</icon>
+    <rights>All rights reserved 2020, Wade</rights>
+    <entry>
+        <title type="html"><![CDATA[从尾到头打印链表]]></title>
+        <id>https://wwtttt.github.io/post/cong-wei-dao-tou-da-yin-lian-biao/</id>
+        <link href="https://wwtttt.github.io/post/cong-wei-dao-tou-da-yin-lian-biao/">
+        </link>
+        <updated>2020-04-24T08:30:33.000Z</updated>
+        <content type="html"><![CDATA[<!-- more -->
+<h1 id="题目描述">题目描述</h1>
+<p>输入一个链表，按链表从尾到头的顺序返回一个ArrayList。</p>
+<h1 id="java数据结构">Java数据结构</h1>
+<pre><code class="language-java">/**
+*    public class ListNode {
+*        int val;
+*        ListNode next = null;
+*
+*        ListNode(int val) {
+*            this.val = val;
+*        }
+*    }
+*
+*/
+</code></pre>
+<h1 id="算法思路">算法思路</h1>
+<h2 id="1按顺序添加链表节点到arraylist再将arraylist反序">1.按顺序添加链表节点到ArrayList，再将ArrayList反序。</h2>
+<h3 id="代码实现">代码实现</h3>
+<pre><code class="language-java">import java.util.*;
+public class Solution {
+    private ArrayList&lt;Integer&gt; res = new ArrayList&lt;&gt;();
+    public ArrayList&lt;Integer&gt; printListFromTailToHead(ListNode listNode) {
+        if(listNode==null)
+            return res;
+        while(listNode!=null){
+            res.add(listNode.val);
+            listNode = listNode.next;
+        }
+        Collections.reverse(res);
+        return res;
+    }
+}
+</code></pre>
+<h2 id="2按顺序将链表节点添加到deque的首部再将deque转为arraylist">2.按顺序将链表节点添加到deque的首部，再将deque转为ArrayList</h2>
+<h3 id="代码实现-2">代码实现</h3>
+<pre><code class="language-java">import java.util.*;
+public class Solution {
+    private Deque&lt;Integer&gt; res = new LinkedList&lt;&gt;();
+    public ArrayList&lt;Integer&gt; printListFromTailToHead(ListNode listNode) {
+        if(listNode==null)
+            return new ArrayList&lt;Integer&gt;();
+        while(listNode!=null){
+            res.addFirst(listNode.val);
+            listNode = listNode.next;
+        }
+        return new ArrayList&lt;Integer&gt;(res);
+    }
+}
+</code></pre>
+<h2 id="3递归思想先添加链表的后半部分再添加当前节点">3.递归思想:先添加链表的后半部分，再添加当前节点</h2>
+<h2 id="代码实现-3">代码实现</h2>
+<pre><code class="language-java">public class Solution {
+    ArrayList&lt;Integer&gt; arrayList=new ArrayList&lt;Integer&gt;();
+    public ArrayList&lt;Integer&gt; printListFromTailToHead(ListNode listNode) {
+        if(listNode!=null){
+            this.printListFromTailToHead(listNode.next);
+            arrayList.add(listNode.val);
+        }
+        return arrayList;
+    }
+}  
+</code></pre>
+]]></content>
+    </entry>
+</feed>
